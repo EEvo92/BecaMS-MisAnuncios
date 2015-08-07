@@ -1,0 +1,72 @@
+﻿@using Mis_Anuncios.Models
+<div class="row">
+   
+    <div class="col-md-4">
+        <h2>Búsqueda</h2>
+        <form>
+            <label style="width: 80px">Categoria</label>
+            <select name="categoryoption" style="width: 200px">
+                @if (ViewBag.container.CategoriesList.Count != 0){
+                    foreach (Category cat in ViewBag.container.CategoriesList)
+                    {
+                        <option value="@cat.CategoryId">@cat.CategoryType</option>
+                    }
+                }
+                else{
+                <option value="0"> No existe ninguna categoría</option>
+                }
+               
+            </select>
+            <br/>
+            <label style="width: 80px">Ciudad</label>
+            <select name="cityoption" style="width: 200px">
+                @if (ViewBag.container.CitiesList.Count != 0){
+                    foreach (City cit in ViewBag.container.CitiesList)
+                    {
+                        <option value="@cit.CityId">@cit.CityName</option>
+                    }
+                }
+                else{
+                <option value="0"> No existe ninguna ciudad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                }
+            </select>
+            <br/>   
+                <input type="submit" id="search" style="width: 280px" value="Buscar"> <br />
+                <input type="reset" style="width: 280px" value="Limpiar formulario">    
+        </form>
+    </div>
+
+    <div class="col-md-8">
+        <h2>Anuncios</h2>
+            @if (ViewBag.container.CommercialsList.Count != 0){
+                foreach (Commercial com in ViewBag.container.CommercialsList)
+                {
+                    <div>
+                        <table>
+                            <tr>
+                                @com.Title
+                            </tr>
+                            <tr>
+                                @com.Description
+                            </tr>
+                            <tr>
+                                <td>@com.ComCity</td>
+                                <td>@com.ComCategory</td>
+                                @com.Description
+                            </tr>
+                        </table>
+                    </div>
+                    
+                }
+            }
+            else{
+                <div>
+                    No existe ningun anuncio
+                </div>
+            }
+
+
+
+
+    </div>
+</div>
